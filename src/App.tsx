@@ -22,6 +22,7 @@ const App: React.FunctionComponent = () => {
   const [passwordStrength, setPasswordStrength] =
     useState<PasswordStrength>("Very Weak");
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+  const [strengthColor, setStrengthColor] = useState<string>("styles.strengthVeryWeak");
 
   // This function will be triggered when the password input field changes
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,19 +34,26 @@ const App: React.FunctionComponent = () => {
     if (password.length <= 4) {
       setPasswordStrength("Very Weak");
       setIsButtonDisabled(true);
+      setStrengthColor("strengthVeryWeak")
     } else if (password.length <= 6) {
       setPasswordStrength("Weak");
       setIsButtonDisabled(true);
+      setStrengthColor("strengthWeak")
     } else if (password.length <= 8) {
       setPasswordStrength("Medium");
+      setStrengthColor("strengthMedium")
     } else if (password.length <= 12) {
       setPasswordStrength("Strong");
       setIsButtonDisabled(false);
+      setStrengthColor("strengthStrong")
     } else {
       setPasswordStrength("Very Strong");
+      setStrengthColor("strengthVeryStrong")
+      
       setIsButtonDisabled(false);
     }
   }, [password]);
+
 
   // Button handler function
   const buttonHandler = () => {
@@ -71,8 +79,10 @@ const App: React.FunctionComponent = () => {
       <div style={styles.statusBar}>
         <div
           style={{
+            
             ...styles.strengthWeak,
             width: `${(password.length / 16) * 100}%`,
+            
           }}
         ></div>
       </div>
