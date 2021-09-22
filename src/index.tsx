@@ -71,7 +71,7 @@ const App: React.FunctionComponent = () => {
       </div>
 
       {/* Password strength message */}
-      <div className='message'>{passwordStrength}</div>
+      <div className='message'>{passwordStrength}</div> 
 
       {/* This button is only clickable when the entered password is strong enough */}
       <button {
