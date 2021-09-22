@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+//import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 type PasswordStrength =
@@ -74,10 +74,9 @@ const App: React.FunctionComponent = () => {
       <div className='message'>{passwordStrength}</div>
 
       {/* This button is only clickable when the entered password is strong enough */}
-      <button
-        style={
-          isButtonDisabled ? { ...styles.button, ...styles.disabledButton }
-            : styles.button
+      <button {
+          ...isButtonDisabled ? {'button': 'disabledButton' }
+            : 'button'
         }
         disabled={isButtonDisabled}
         onClick={buttonHandler}
