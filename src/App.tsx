@@ -10,9 +10,19 @@ type PasswordStrength =
   | "Strong"
   | "Very Strong";
 
+type StrengthColor =
+  | "strengthVeryWeak"
+  | "strengthWeak"
+  | "strengthMedium"
+  | "strengthStrong"
+  | "strengthVeryStrong";
+
 const Top: React.FunctionComponent = () => {
   return(
+    <div>
       <h1>Tyler's Password Strength Checker</h1>
+      <h2><a href ="https://github.com/strrules105/Password-Strength-Checker">Github Repository</a></h2>
+    </div>
   )
 }
 
@@ -22,7 +32,8 @@ const App: React.FunctionComponent = () => {
   const [passwordStrength, setPasswordStrength] =
     useState<PasswordStrength>("Very Weak");
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
-  const [strengthColor, setStrengthColor] = useState<string>("styles.strengthVeryWeak");
+  const [strengthColor, setStrengthColor] = 
+    useState<StrengthColor>("strengthVeryWeak");
 
   // This function will be triggered when the password input field changes
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,14 +88,14 @@ const App: React.FunctionComponent = () => {
 
       {/* This bar indicates the strength of the entered password */}
       <div style={styles.statusBar}>
-        <div
-          style={{
-            
-            ...styles.strengthWeak,
+        <div style={
+          {
+            ...styles.strengthMedium,
             width: `${(password.length / 16) * 100}%`,
-            
-          }}
-        ></div>
+          }
+        }
+        >
+        </div>
       </div>
 
       {/* Password strength message */}
@@ -112,7 +123,7 @@ const styles = {
     width: "60%",
     padding: "30px 90px",
     margin: "50px auto",
-    background: "green",
+    background: "tan",
     borderRadius: "10px",
     display: "flex",
     flexDirection: "column",
