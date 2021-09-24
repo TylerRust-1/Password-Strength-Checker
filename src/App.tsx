@@ -10,13 +10,6 @@ type PasswordStrength =
   | "Strong"
   | "Very Strong";
 
-type StrengthColor =
-  | "strengthVeryWeak"
-  | "strengthWeak"
-  | "strengthMedium"
-  | "strengthStrong"
-  | "strengthVeryStrong";
-
 const Top: React.FunctionComponent = () => {
   return(
     <div>
@@ -32,8 +25,7 @@ const App: React.FunctionComponent = () => {
   const [passwordStrength, setPasswordStrength] =
     useState<PasswordStrength>("Very Weak");
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
-  const [strengthColor, setStrengthColor] = 
-    useState<StrengthColor>("strengthVeryWeak");
+  const [strengthColor, setStrengthColor] = useState<string>("styles.strengthVeryWeak");
 
   // This function will be triggered when the password input field changes
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,14 +80,14 @@ const App: React.FunctionComponent = () => {
 
       {/* This bar indicates the strength of the entered password */}
       <div style={styles.statusBar}>
-        <div style={
-          {
-            ...styles.strengthMedium,
+        <div
+          style={{
+            
+            ...styles.strengthWeak,
             width: `${(password.length / 16) * 100}%`,
-          }
-        }
-        >
-        </div>
+            
+          }}
+        ></div>
       </div>
 
       {/* Password strength message */}
