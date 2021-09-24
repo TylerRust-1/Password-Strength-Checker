@@ -25,7 +25,7 @@ const App: React.FunctionComponent = () => {
   const [passwordStrength, setPasswordStrength] =
     useState<PasswordStrength>("Very Weak");
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
-  const [strengthColor, setStrengthColor] = useState<string>("styles.strengthVeryWeak");
+
 
   // This function will be triggered when the password input field changes
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,21 +37,21 @@ const App: React.FunctionComponent = () => {
     if (password.length <= 4) {
       setPasswordStrength("Very Weak");
       setIsButtonDisabled(true);
-      setStrengthColor("strengthVeryWeak")
+      (styles.strengthMeter.backgroundColor as string) = "red";
     } else if (password.length <= 6) {
       setPasswordStrength("Weak");
       setIsButtonDisabled(true);
-      setStrengthColor("strengthWeak")
+      (styles.strengthMeter.backgroundColor as string) = "orange";
     } else if (password.length <= 8) {
       setPasswordStrength("Medium");
-      setStrengthColor("strengthMedium")
+      (styles.strengthMeter.backgroundColor as string) = "yellow";
     } else if (password.length <= 12) {
       setPasswordStrength("Strong");
       setIsButtonDisabled(false);
-      setStrengthColor("strengthStrong")
+      (styles.strengthMeter.backgroundColor as string) = "lime";
     } else {
       setPasswordStrength("Very Strong");
-      setStrengthColor("strengthVeryStrong")
+      (styles.strengthMeter.backgroundColor as string) = "green";
       
       setIsButtonDisabled(false);
     }
@@ -67,7 +67,7 @@ const App: React.FunctionComponent = () => {
   return (
     <div style={styles.container}>
       <Top />
-      <h3>Password Strength Checker</h3>
+      <h3>Please Input a String</h3>
 
       {/* The input field */}
       <input
@@ -82,8 +82,7 @@ const App: React.FunctionComponent = () => {
       <div style={styles.statusBar}>
         <div
           style={{
-            
-            ...styles.strengthWeak,
+            ...styles.strengthMeter,
             width: `${(password.length / 16) * 100}%`,
             
           }}
@@ -136,30 +135,10 @@ const styles = {
     border: "1px solid #444",
     borderRadius: "5px",
   },
-  strengthVeryWeak: {
+  strengthMeter: {
     height: "100%",
     maxWidth: "100%",
     backgroundColor: "red",
-  },
-  strengthWeak: {
-    height: "100%",
-    maxWidth: "100%",
-    backgroundColor: "orange",
-  },
-  strengthMedium: {
-    height: "100%",
-    maxWidth: "100%",
-    backgroundColor: "yellow",
-  },
-  strengthStrong: {
-    height: "100%",
-    maxWidth: "100%",
-    backgroundColor: "lime",
-  },
-  strengthVeryStrong: {
-    height: "100%",
-    maxWidth: "100%",
-    backgroundColor: "green",
   },
   message: {
     padding: "20px 0",
