@@ -112,7 +112,7 @@ const styles = {
     width: "60%",
     padding: "30px 90px",
     margin: "50px auto",
-    background: "tan",
+    background: "green",
     borderRadius: "10px",
     display: "flex",
     flexDirection: "column",
