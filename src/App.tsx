@@ -19,43 +19,53 @@ const Top: React.FunctionComponent = () => {
   )
 }
 
+
 const App: React.FunctionComponent = () => {
   // The password
+  const re=/[^A-Z][^a-z]/g //regex to search for symbols/numbers in password to increase complexity
+  const [symbols, setSymbols] = useState<number>(0);
   const [password, setPassword] = useState<string>("");
   const [passwordStrength, setPasswordStrength] =
     useState<PasswordStrength>("Very Weak");
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 
-
   // This function will be triggered when the password input field changes
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const enteredValue = event.target.value.trim();
+    //Counts occurrences of non letters and sets symbol count
+    const count = (str: string) => {
+      return ((str || '').match(re) || []).length
+    }
+    setSymbols(count(enteredValue));
     setPassword(enteredValue);
   };
 
   useEffect(() => {
-    if (password.length <= 4) {
+    if (password.length >=0 && password.length <4 && symbols===0) {
       setPasswordStrength("Very Weak");
       setIsButtonDisabled(true);
       (styles.strengthMeter.backgroundColor as string) = "red";
-    } else if (password.length <= 6) {
+    } 
+    else if (password.length >= 4 && password.length < 6 && symbols<=1) {
       setPasswordStrength("Weak");
       setIsButtonDisabled(true);
       (styles.strengthMeter.backgroundColor as string) = "orange";
-    } else if (password.length <= 8) {
+    } 
+    else if (password.length >= 6 && password.length < 8 && symbols >=2) {
       setPasswordStrength("Medium");
       (styles.strengthMeter.backgroundColor as string) = "yellow";
-    } else if (password.length <= 12) {
+    } 
+    else if (password.length >= 8 && password.length < 12 && symbols >= 2) {
       setPasswordStrength("Strong");
       setIsButtonDisabled(false);
       (styles.strengthMeter.backgroundColor as string) = "lime";
-    } else {
+    } 
+    else if(password.length>=12 && symbols >=3) {
       setPasswordStrength("Very Strong");
       (styles.strengthMeter.backgroundColor as string) = "green";
-      
       setIsButtonDisabled(false);
     }
-  }, [password]);
+  }, [password, symbols]);
 
 
   // Button handler function
