@@ -1,5 +1,6 @@
 // App.tsx
 import React, { useState, useEffect } from "react";
+import {Route} from "react-router-dom"
 import './index.css';
 
 // Declare password strength type
@@ -19,10 +20,9 @@ const Top: React.FunctionComponent = () => {
   )
 }
 
-
 const App: React.FunctionComponent = () => {
   // The password
-  const re=/[^A-Z][^a-z]/g //regex to search for symbols/numbers in password to increase complexity
+  const re=/[^A-Z][^a-z][^0-9]/g //regex to search for symbols/numbers in password to increase complexity
   const [symbols, setSymbols] = useState<number>(0);
   const [password, setPassword] = useState<string>("");
   const [passwordStrength, setPasswordStrength] =
