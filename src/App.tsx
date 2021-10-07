@@ -1,6 +1,5 @@
 // App.tsx
 import React, { useState, useEffect } from "react";
-import {Route} from "react-router-dom"
 import './index.css';
 
 // Declare password strength type
